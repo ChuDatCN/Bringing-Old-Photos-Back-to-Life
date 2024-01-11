@@ -68,7 +68,7 @@ def get_transform(opt, params, method=Image.BICUBIC, normalize=True):
     if opt.resize_or_crop == 'none':
         base = float(2 ** opt.n_downsample_global)
         if opt.netG == 'local':
-            base *= (2 ** opt.n_local_enhancers)
+            base = base * (2 ** opt.n_local_enhancers)
         transform_list.append(transforms.Lambda(lambda img: __make_power_2(img, base, method)))
 
     if opt.isTrain and not opt.no_flip:

@@ -476,7 +476,7 @@ class NonLocalBlock2D_with_mask_Res(nn.Module):
 
         f = torch.matmul(theta_x, phi_x)
 
-        f /= self.temperature
+        f = f / self.temperature
 
         f_div_C = F.softmax(f, dim=2)
 
@@ -486,7 +486,7 @@ class NonLocalBlock2D_with_mask_Res(nn.Module):
         mask = 1 - mask
 
         tmp = F.interpolate(tmp, (x.size(2), x.size(3)))
-        mask *= tmp
+        mask = mask * tmp
 
         mask_expand = mask.view(batch_size, 1, -1)
         mask_expand = mask_expand.repeat(1, x.size(2) * x.size(3), 1)

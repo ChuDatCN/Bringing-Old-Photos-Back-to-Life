@@ -194,7 +194,7 @@ class Pix2PixHDGenerator(BaseNetwork):
                 norm_layer(nn.Conv2d(opt.ngf * mult, opt.ngf * mult * 2, kernel_size=3, stride=2, padding=1)),
                 activation,
             ]
-            mult *= 2
+            mult = mult * 2
 
         # resnet blocks
         for i in range(opt.resnet_n_blocks):
